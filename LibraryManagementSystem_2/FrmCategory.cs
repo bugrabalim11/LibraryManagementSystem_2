@@ -36,12 +36,19 @@ namespace LibraryManagementSystem_2
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Category category = new Category();   // Yeni kategori nesensi
-            category.CategoryName = txtCategoryName.Text;    // Kullanıcının girdiği ismi bu nesneye atıyoruz
-            db.Categories.Add(category);   // Veri tababnına ekledik
-            db.SaveChanges();
-            MessageBox.Show("Kategori başarıyla eklendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Listele();
+            if (!string.IsNullOrEmpty(txtCategoryName.Text))
+            {
+                Category category = new Category();  // Yeni kategori nesensi // yeni veri eklediğimiz için yeni nesneye ihtiyacımız var
+                category.CategoryName = txtCategoryName.Text;  // Kullanıcının girdiği ismi bu nesneye atıyoruz
+                db.Categories.Add(category);   // Veri tababnına ekledik
+                db.SaveChanges();
+                MessageBox.Show("Kaydetme işlemi başarılı!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Listele();
+            }
+            else
+            {
+                MessageBox.Show("Kaydetme işlemi başarısız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
