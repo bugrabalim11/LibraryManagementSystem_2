@@ -1,17 +1,22 @@
-﻿using System;
+﻿using LibraryManagementSystem_2.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace LibraryManagementSystem_2
 {
-    public class Context
+    public class Context: DbContext
     {
-        public SqlConnection Baglanti()
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            SqlConnection connect = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=DbLibrarySystem;Integrated Security=True;");
-
-            return connect;
+            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Initial Catalog=DbLibrarySystem;Integrated Security=True;TrustServerCertificate=True;");
         }
-       
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Member> Members { get; set; }
+        public DbSet<Process> Processes { get; set; }
     }
 }
