@@ -8,10 +8,10 @@ namespace LibraryManagementSystem_2.Entities
     public class Book
     {
         public int BookID {  get; set; }
-        public string Title { get; set; } = string.Empty;
+        public string BookName { get; set; } = string.Empty;
         public int PageCount {  get; set; }
         public int CategoryID {  get; set; }
         public int AuthorID {  get; set; }
-        public bool IsBrrowed {  get; set; }
+        public bool IsBorrowed { get; set; }
     }
 }
