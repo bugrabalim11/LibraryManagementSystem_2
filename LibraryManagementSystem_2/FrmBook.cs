@@ -19,7 +19,7 @@ namespace LibraryManagementSystem_2
             InitializeComponent();
         }
 
-        Context db = new Context();
+        Context db = new Context(); //KODLARKEN EKLE YOKSA KODLAR KARIŞIYOR!!!!!!   
         private void YazarlariGetir()
         {
             using (Context db = new Context())
@@ -90,7 +90,7 @@ namespace LibraryManagementSystem_2
             // Entitiy Framework ile veritabanına kayıt işlemi
             using (Context db = new Context())
             {
-                // Yeni bir Book nesnesi (Entity) oluşturuyoruz
+                // Yeni bir Book nesnesi (Entity) oluşturuyoruz   Çünkü yeni kayıt yapıyoruz
                 Book newBook = new Book()
                 {
                     BookName = txtBookName.Text,
