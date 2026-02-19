@@ -11,5 +11,10 @@ namespace LibraryManagementSystem_2.Entities
         public string MemberSurname { get; set; } = string.Empty;
         public string MemberEmail { get; set; } = string.Empty;
         public string MemberPhone { get; set; } = string.Empty;
+
+        public override string ToString()
+        {
+            return MemberName;
+        }
     }
 }

@@ -13,5 +13,11 @@ namespace LibraryManagementSystem_2.Entities
         public int CategoryID {  get; set; }
         public int AuthorID {  get; set; }
         public bool IsBorrowed { get; set; }
+
+        // EKLENECEK KISIM: WinForms'a ekranda ne göstereceğini kesin olarak söylüyoruz  *bookta Library Managementsystem yazıyordu*
+        public override string ToString()
+        {
+            return BookName;
+        }
     }
 }

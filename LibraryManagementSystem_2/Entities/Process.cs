@@ -12,5 +12,11 @@ namespace LibraryManagementSystem_2.Entities
         public DateTime StartDate {  get; set; }
         public DateTime EndDate { get; set; }
         public bool IsReturned {  get; set; }
+
+
+
+        // Yanına '?' ekleyerek nullable yapıyoruz, böylece CS8618 uyarısı gider.
+        public virtual Book? Book { get; set; }
+        public virtual Member? Member { get; set; }
     }
 }
