@@ -80,7 +80,7 @@ namespace LibraryManagementSystem_2
             }
             else
             {
-                MessageBox.Show("Eklem işlemi başarısız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ekleme işlemi başarısız!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

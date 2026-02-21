@@ -50,6 +50,18 @@ namespace LibraryManagementSystem_2
                     // 1. ADIM: Yeni bir İşlem (Process) kaydı oluşturuyoruz
                     Process newProcess = new Process();
 
+                    // EKSİK OLAN KONTROL BURAYA EKLENDİ:
+                    // Veritabanından o kitabı buluyoruz ki durumuna bakalım
+                    var currentBook = db.Books.Find(bookId);
+
+                    // Eğer kitap bulunduysa VE şu an zaten başkasındaysa (IsBorrowed == true)
+                    if (currentBook != null && currentBook.IsBorrowed == true)
+                    {
+                        // Kullanıcıya uyarı verip işlemi burada kesiyoruz (return)
+                        MessageBox.Show("Bu kitap şu an başka bir üyede. İade edilmeden tekrar verilemez!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Aşağıdaki kayıt adımlarına geçmesini engeller.
+                    }
+
                     // Artık null kontrolünden geçtiğimiz için bookId ve memberId değişkenlerini güvenle kullanabiliriz
                     newProcess.BookID = bookId;
                     newProcess.MemberID = memberId;
@@ -84,7 +96,7 @@ namespace LibraryManagementSystem_2
         {
             if (cmbChooseBook.SelectedValue is int bookId)
             {
-                Context db = new Context();
+                using Context db = new Context();
                 {
                     // 1. ADIM: Aktif İşlemi Bulma
                     // LINQ kullanarak bu kitabın ID'sine sahip ve IsReturned durumu 'false' olan kaydı getiriyoruz.
@@ -100,7 +112,7 @@ namespace LibraryManagementSystem_2
                         activeProcess!.IsReturned = true;
 
                         // Kitap (Book) tablosunu güncelle (Artık ödünçte değil, başkası alabilir)
-                        returnedBook.IsBorrowed = true;
+                        returnedBook.IsBorrowed = false;
                         db.SaveChanges();
                         MessageBox.Show("Kitap başarıyla geri alındı ve rafa eklendi!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         dgvProcessList.DataSource = db.Processes.ToList();
