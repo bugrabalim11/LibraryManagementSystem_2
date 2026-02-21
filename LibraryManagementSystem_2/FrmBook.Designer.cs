@@ -71,7 +71,7 @@
             label3.Name = "label3";
             label3.Size = new Size(113, 24);
             label3.TabIndex = 5;
-            label3.Text = "Yazar Formu";
+            label3.Text = "Kitap Formu";
             // 
             // cmbAuthor
             // 
